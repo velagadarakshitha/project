@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Food Website</title>
+
+  <style>
+    .food-layer {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+   }
+
+   [data-scroll-speed] {
+  animation: scrollIt var(--scroll-speed) ease-in-out infinite;
+   }
+
+  @keyframes scrollIt {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100vh); }
+ }
+
+.food-layer:nth-child(odd) {
+  --scroll-speed: 1; /* Slower speed for background */
+}
+
+.food-layer:nth-child(even) {
+  --scroll-speed: 0.7; /* Faster speed for foreground */
+}
+
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="hero__video-container">
+      <video class="hero__video" autoplay loop muted></video>
+    </div>
+    <div class="hero__text-container">
+      <h1 class="hero__title">Your Website Name</h1>
+      <p class="hero__tagline">Fresh, seasonal flavors for every craving</p>
+    </div>
+  </section>
+
+  <section class="food-layer" data-scroll-speed="0.7">
+    <img class="food-layer__background" src="images/food-category.jpg" alt="Food Category">
+    <div class="food-layer__content">
+      <h2 class="food-layer__title">Food Category Name</h2>
+      <p class="food-layer__description">Short description of the food category</p>
+    </div>
+  </section>
+
+  <script >
+    const heroText = document.querySelector('.hero__text-container');
+
+window.addEventListener('scroll', function() {
+  const scrollY = window.scrollY;
+  heroText.style.transform = `translateY(-${scrollY * 0.1}px)`;
+});
+
+  </script>
+</body>
+</html>
